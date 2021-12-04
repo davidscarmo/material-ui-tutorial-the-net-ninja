@@ -2,10 +2,10 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      Hello There
+      Hello There <br />
       <Link href="/Create">
         <a>Create</a>
-      </Link>
+      </Link> <br />
       <Link href="/Notes">
         <a>Notes</a>
       </Link>
