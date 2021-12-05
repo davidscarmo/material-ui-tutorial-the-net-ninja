@@ -11,6 +11,9 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { SubjectOutlined, AddCircleOutlineOutlined } from "@material-ui/icons";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import { format } from "date-fns";
 
 type LayoutProps = {
   children: ReactNode;
@@ -39,6 +42,13 @@ const useStyles = makeStyles((theme) => {
     title: {
       padding: theme.spacing(2),
     },
+    appBar: {
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+    toolbar: theme.mixins.toolbar,
+    date: {
+      flexGrow: 1,
+    },
   };
 });
 
@@ -60,6 +70,14 @@ export const Layout = (props: LayoutProps) => {
   return (
     <div className={classes.root}>
       {/* App Bar */}
+      <AppBar className={classes.appBar} elevation={0}>
+        <Toolbar>
+          <Typography className={classes.date}>
+            Today is the {format(new Date(), "do MMMM Y")}
+          </Typography>
+          <Typography> David</Typography>
+        </Toolbar>
+      </AppBar>
       {/* side drawer */}
       <Drawer
         className={classes.drawer}
@@ -92,7 +110,10 @@ export const Layout = (props: LayoutProps) => {
           ))}
         </List>
       </Drawer>
-      <div className={classes.page}>{props.children}</div>;
+      <div className={classes.page}>
+        <div className={classes.toolbar}></div>
+        {props.children}
+      </div>
     </div>
   );
 };
