@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import { createTheme, ThemeProvider } from "@material-ui/core";
 import purple from "@material-ui/core/colors/purple";
+import Layout from "../components/Layout";
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,7 +21,9 @@ const theme = createTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <Component {...pageProps} />;
+      <Layout>
+        <Component {...pageProps} />;
+      </Layout>
     </ThemeProvider>
   );
 }
